@@ -11,7 +11,7 @@ import pages.VehiclesResultPage;
 import java.util.List;
 
 public class FilterBarVehicles extends BasePage {
-    @FindBy(xpath = "//*[@id='ff']/div[7]/div[2]/div[2]/div/div[1]")
+    @FindBy(xpath = "//input[@id='_id_a15']/following-sibling::div[@class='me']")
     WebElement engineDropdown;
     @FindBy(xpath = "//div[@class='l ms top']/div[@class = 'i']")
     List<WebElement> engineTypeList;
@@ -20,22 +20,17 @@ public class FilterBarVehicles extends BasePage {
 
     public FilterBarVehicles openEngineDropdown(){
         try {
+        Thread.sleep(3000);
+        }catch (Exception e){}
         clickOnElement(engineDropdown);
         return this;
-        }catch (Exception e){}
-        return null;
     }
     public VehiclesResultPage chooseEngineType(Engines engin) {
         for (WebElement e : engineTypeList) {
-            try {
-                Thread.sleep(1500);
-            }catch (Exception eqwe){
-
-            }
             String elementText = e.getText();
-            if (engin.equals(Engines.getElementByValue(elementText))) {
+            if (engin.getValue().equals(elementText)) {
                 e.click();
-                chooseButton.click();
+                clickOnElement(chooseButton);
                 return new VehiclesResultPage();
             }
         }

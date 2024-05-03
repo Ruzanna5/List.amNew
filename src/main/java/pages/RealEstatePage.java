@@ -22,10 +22,10 @@ public class RealEstatePage extends BasePage {
     }
 
 
-    public void checkFilterResult(){
+    public void checkFilterResult(int fromIndex, int toIndex){
         try {
             Thread.sleep(2000);
-            for (WebElement post : topPosts.subList(0, 5)) {
+            for (WebElement post : topPosts.subList(fromIndex,toIndex)) {
                 System.out.println(post.getText());
                 System.out.println("----------------");
             }

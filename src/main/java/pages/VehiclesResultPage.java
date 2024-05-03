@@ -26,18 +26,15 @@ public class VehiclesResultPage extends BasePage {
         return this;
     }
 
-    public void checkResult() {
+    public boolean checkResult() {
         ArrayList<String> tabs = new ArrayList<>(DriverManager.getDriver().getWindowHandles());
-        for (int i = 1; i <= tabs.size(); i++) {
-            DriverManager.getDriver().switchTo().window(tabs.get(i));
+        for (int i = 0; i <= tabs.size(); i++) {
             String value = engineInfo.getText();
+            DriverManager.getDriver().switchTo().window(tabs.get(i));
             if (engineInfo.getText().equals(Engines.getElementByValue(value))) {
-                System.out.println("Vazgen Jan ");
+
+                return true;
             }
-        }
-
-
+        }return false;
     }
-
-
 }

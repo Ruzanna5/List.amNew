@@ -1,8 +1,10 @@
 package Filters;
 
+import enums.Currency;
 import enums.Region;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 import pages.RealEstatePage;
@@ -22,6 +24,8 @@ public class FilterBarRealEstate extends RealEstatePage {
     WebElement priceF;
     @FindBy(xpath = "//*[@id='idprice2']")
     WebElement priceT;
+    @FindBy(xpath = "//*[@id='ff']/div[1]/div/div[2]/div[2]")
+    WebElement scroll;
 
     @FindBy(xpath = "(//div[@class='me'])[2]")
     WebElement currencyDropdown;
@@ -29,20 +33,21 @@ public class FilterBarRealEstate extends RealEstatePage {
     @FindBy(className = "ico")
     private List<WebElement> icoElements;
 
+    Actions action = new Actions(driver);
+
     public FilterBarRealEstate chooseRegion(Region... regions) {
-        ArrayList<Region> r = new ArrayList<>();
+        int count = 0;
         clickOnElement(regionDropdown);
         for (WebElement e : regionList) {
             String elementText = e.getText();
-            Region regionFromElement = Region.getElementByValue(elementText);
             for (Region region : regions) {
-                if (region.equals(regionFromElement)) {
+                if (region.getValue().equals(elementText)) {
                     clickOnElement(e);
-                    r.add(region);
-                    if (r.size() == regions.length) {
-                        return new FilterBarRealEstate();
-                    }
+                    count++;
                 }
+            }
+            if (count == regions.length) {
+                return new FilterBarRealEstate();
             }
         }
         System.out.println("Region not found in the list.");
@@ -51,7 +56,7 @@ public class FilterBarRealEstate extends RealEstatePage {
 
     public FilterBarRealEstate clickOnChooseButton() {
         clickOnElement(chooseButton);
-        System.out.println(" ");
+        System.out.println(" Vazgen");
         return this;
     }
 
@@ -66,16 +71,15 @@ public class FilterBarRealEstate extends RealEstatePage {
 
         return null;
     }
-
     public FilterBarRealEstate openCurrencyDropdown() {
         clickOnElement(currencyDropdown);
         return this;
     }
 
-    public FilterBarRealEstate chooseCurrency(String currency) {
+    public FilterBarRealEstate chooseCurrency(Currency currency) {
         for (WebElement element : icoElements) {
             waitForElementVisibility(element);
-            if (element.getText().contains(currency)) {
+            if (element.getText().contains(currency.getValue())) {
                 clickOnElement(element);
                 return this;
             }

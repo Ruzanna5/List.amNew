@@ -19,7 +19,12 @@
             <artifactId>selenium-java</artifactId>
             <version>4.16.1</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/com.asprise.ocr/java-ocr-api -->
+        <dependency>
+            <groupId>com.asprise.ocr</groupId>
+            <artifactId>java-ocr-api</artifactId>
+            <version>15.3.0.3</version>
+        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -95,7 +100,18 @@
             <artifactId>poi</artifactId>
             <version>5.2.5</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/com.asprise.ocr/java-ocr-api -->
+        <dependency>
+            <groupId>com.asprise.ocr</groupId>
+            <artifactId>java-ocr-api</artifactId>
+            <version>15.3.0.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/de.niklasfi.aocr/aocr -->
+        <dependency>
+            <groupId>de.niklasfi.aocr</groupId>
+            <artifactId>aocr</artifactId>
+            <version>2.3</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
